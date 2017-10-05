@@ -21,7 +21,7 @@ Route::group(['as' => 'voyager.'], function () {
     Route::post('login', ['uses' => $namespacePrefix.'VoyagerAuthController@postLogin', 'as' => 'postlogin']);
 
     $guard = config('voyager.guard');
-    Route::group(['middleware' => 'admin.user' . $guard ? ':' . $guard  : ''], function () use ($namespacePrefix) {
+    Route::group(['middleware' => 'admin.user' . ($guard ? ':' . $guard  : '')], function () use ($namespacePrefix) {
         event('voyager.admin.routing', app('router'));
 
         // Main Admin and Logout Route
