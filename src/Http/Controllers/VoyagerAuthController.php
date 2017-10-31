@@ -11,6 +11,13 @@ class VoyagerAuthController extends Controller
 {
     use AuthenticatesUsers;
 
+
+    public function __construct() {
+        $guard = config('voyager.guard');
+        Auth::shouldUse($guard);
+    }
+
+
     public function login()
     {
         if (Auth::user()) {
